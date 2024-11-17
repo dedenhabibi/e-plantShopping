@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
-import CartItem from './CartItem';
+import CartItem from './CartItem'; 
 import { addItem } from './CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,7 +10,8 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
 
-    // Maintain a variable dedicated to counting the total number of items added to the cart.
+    // Task 3: Maintain a variable dedicated to counting the total number of items added to the cart.
+    // Task 4: Retrieve the quantity of all the items in the cart from the Redux store.
     let totalCartItems = useSelector(state => {
         let total = 0;
         state.cart.items.map((item) => total += item.quantity);
