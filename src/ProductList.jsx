@@ -12,11 +12,18 @@ function ProductList() {
 
     // Task 3: Maintain a variable dedicated to counting the total number of items added to the cart.
     // Task 4: Retrieve the quantity of all the items in the cart from the Redux store.
-    let totalCartItems = useSelector(state => {
-        let total = 0;
-        state.cart.items.map((item) => total += item.quantity);
-        return total;
-    });
+            //let totalCartItems = useSelector(state => {
+            //    let total = 0;
+            //    state.cart.items.map((item) => total += item.quantity);
+            //    return total;
+            //});
+    
+    const [cartNumber, setCartNumber] = useState(0);
+    const cartItems = useSelector(state => state.cart.items);
+    const totalCartItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+    useEffect(() => {
+        setCartNumber(totalCartItems);
+    }, [totalCartItems]);
 
     const plantsArray = [
         {
@@ -294,7 +301,7 @@ function ProductList() {
                                 <circle cx="80" cy="216" r="12"></circle>
                                 <circle cx="184" cy="216" r="12"></circle>
                                 <path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path>
-                                <text x="106" y="146" fill="white">{totalCartItems}</text>
+                                <text x="106" y="146" fill="white">{cartNumber}</text>
                             </svg>
                         </h1>
                     </a>
